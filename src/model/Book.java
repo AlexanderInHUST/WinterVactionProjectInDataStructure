@@ -19,7 +19,7 @@ public class Book implements Serializable{
     private static final int DEFAULT_MAX_LINES_PER_PAGE = 5;
 
     private String contents;
-    private MyLinkedList<Word> words;
+    private LinkedList<Word> words;
     private int maxWordsPerLine;
     private int maxLinesPerPage;
 
@@ -52,7 +52,7 @@ public class Book implements Serializable{
     }
 
     private Book() {
-        words = new MyLinkedList<>();
+        words = new LinkedList<>();
         maxWordsPerLine = DEFAULT_MAX_WORDS_PER_LINE;
         maxLinesPerPage = DEFAULT_MAX_LINES_PER_PAGE;
     }
@@ -84,11 +84,11 @@ public class Book implements Serializable{
         this.contents = contents;
     }
 
-    public MyLinkedList<Word> getWords() {
+    public LinkedList<Word> getWords() {
         return words;
     }
 
-    public void setWords(MyLinkedList<Word> words) {
+    public void setWords(LinkedList<Word> words) {
         this.words = words;
     }
 

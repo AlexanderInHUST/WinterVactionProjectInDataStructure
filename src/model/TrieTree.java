@@ -15,10 +15,10 @@ public class TrieTree implements Serializable {
     private static final long serialVersionUID = 20170116;
 
     private TrieTree[] children;
-    private MyLinkedList<Word> wordList;
+    private LinkedList<Word> wordList;
 
     private TrieTree() {
-        wordList = new MyLinkedList<>();
+        wordList = new LinkedList<>();
     }
 
     public static TrieTree initialTireTree() {
@@ -38,18 +38,18 @@ public class TrieTree implements Serializable {
         return deleteWord(word, word.getSelf());
     }
 
-    public MyLinkedList<Word> searchWord(Word word) {
+    public LinkedList<Word> searchWord(Word word) {
         return searchWord(word, word.getSelf());
     }
 
-    public MyLinkedList<Word> traverseTrieTree() {
-        MyLinkedList<Word> allWords = new MyLinkedList<>();
+    public LinkedList<Word> traverseTrieTree() {
+        LinkedList<Word> allWords = new LinkedList<>();
         traverseTrieTree(allWords);
         return allWords;
     }
 
     @Nullable
-    private void traverseTrieTree(MyLinkedList<Word> allWords) {
+    private void traverseTrieTree(LinkedList<Word> allWords) {
         if(wordList.size() != 0)
             allWords.add(wordList.get(0));
         if(children != null) {
@@ -61,7 +61,7 @@ public class TrieTree implements Serializable {
     }
 
     @Nullable
-    private MyLinkedList<Word> searchWord(Word word, String subWord) {
+    private LinkedList<Word> searchWord(Word word, String subWord) {
         if(wordList == null)
             return null;
         if(subWord.length() == 0) {
@@ -78,7 +78,7 @@ public class TrieTree implements Serializable {
         if(subWord.length() == 0) {
             if(wordList == null || !wordList.contains(word))
                 return false;
-            wordList = new MyLinkedList<>();
+            wordList = new LinkedList<>();
             return true;
         } else {
             return children[subWord.charAt(0) - 'a'].deleteWord(word, subWord.substring(1));
@@ -105,11 +105,11 @@ public class TrieTree implements Serializable {
         this.children = children;
     }
 
-    public MyLinkedList<Word> getWordList() {
+    public LinkedList<Word> getWordList() {
         return wordList;
     }
 
-    public void setWordList(MyLinkedList<Word> wordList) {
+    public void setWordList(LinkedList<Word> wordList) {
         this.wordList = wordList;
     }
 }

@@ -21,15 +21,15 @@ public class MainTest {
         System.out.println("Initial done.");
         manager.insertDSTable("asd", 1000000);
         System.out.println("Insert done.");
-        manager.searchDSTable("a", (MyLinkedList<Word> words) -> {
+        manager.searchDSTable("a", (LinkedList<Word> words) -> {
             System.out.println(words.size());
         });
         System.out.println("Search done.");
-        manager.traverseDSTable((MyLinkedList<Word> words) -> {
+        manager.traverseDSTable((LinkedList<Word> words) -> {
             System.out.println(words.size());
         });
         System.out.println("Traverse done.");
-        manager.getAllWordsDSTable((MyLinkedList<Word> words) -> {
+        manager.getAllWordsDSTable((LinkedList<Word> words) -> {
             System.out.println(words.size());
         });
         System.out.println("Get done.");

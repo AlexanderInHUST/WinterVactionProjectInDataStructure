@@ -22,11 +22,11 @@ public class TreeManager{
     private static TreeManager manager;
 
     public interface OnTraverseListener {
-        public void onTraverse(MyLinkedList<Word> words);
+        public void onTraverse(LinkedList<Word> words);
     }
 
     public interface OnSearchListener {
-        public void onSearch(MyLinkedList<Word> words);
+        public void onSearch(LinkedList<Word> words);
     }
 
     private TreeManager() {
@@ -65,7 +65,7 @@ public class TreeManager{
             return false;
         Word searchWord = new Word();
         searchWord.setSelf(word);
-        MyLinkedList<Word> words = root.searchWord(searchWord);
+        LinkedList<Word> words = root.searchWord(searchWord);
         searchListener.onSearch(words);
         return true;
     }
@@ -106,7 +106,7 @@ public class TreeManager{
     public boolean traverseDSTable(OnTraverseListener traverseListener) {
         if (root == null)
             return false;
-        MyLinkedList<Word> words = root.traverseTrieTree();
+        LinkedList<Word> words = root.traverseTrieTree();
         traverseListener.onTraverse(words);
         return true;
     }
@@ -114,7 +114,7 @@ public class TreeManager{
     public boolean getAllWordsDSTable(OnTraverseListener traverseListener) {
         if (root == null)
             return false;
-        MyLinkedList<Word> words = book.getWords();
+        LinkedList<Word> words = book.getWords();
         traverseListener.onTraverse(words);
         return true;
     }
