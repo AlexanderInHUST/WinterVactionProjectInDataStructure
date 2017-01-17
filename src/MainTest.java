@@ -44,6 +44,10 @@ public class MainTest {
             System.out.println(words.size());
         });
         System.out.println("Traverse done.");
+        manager.getAllWordsHash((MyLinkedList<Word> words) -> {
+            System.out.println(words.size());
+        });
+        System.out.println("Get done.");
 //        manager.saveHash("/Users/tangyifeng/data.saved");
         System.out.println("Save done.");
 

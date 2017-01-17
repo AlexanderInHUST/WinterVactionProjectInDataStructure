@@ -43,9 +43,7 @@ public class HashTable implements Serializable {
     public MyLinkedList<Word> traverseHashTable() {
         MyLinkedList<Word> words = new MyLinkedList<>();
         for(MyLinkedList<Word> list : hashTable.getAll()) {
-            for(Word word : list) {
-                words.add(word);
-            }
+            words.add(list.get(0));
         }
         return words;
     }

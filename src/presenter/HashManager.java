@@ -108,6 +108,14 @@ public class HashManager {
         return true;
     }
 
+    public boolean getAllWordsHash(OnTraverseListener traverseListener) {
+        if (table == null)
+            return false;
+        MyLinkedList<Word> words = book.getWords();
+        traverseListener.onTraverse(words);
+        return true;
+    }
+
     public boolean saveHash(@Nullable String saveAddress) {
         try {
             String address = (saveAddress == null) ? "data.saved" : saveAddress;
