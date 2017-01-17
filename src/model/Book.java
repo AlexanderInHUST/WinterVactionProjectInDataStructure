@@ -4,7 +4,6 @@ import baseDataStructure.MyLinkedList;
 import org.omg.CORBA.portable.InputStream;
 
 import java.io.*;
-import java.util.LinkedList;
 
 /**
  * Created by tangyifeng on 17/1/16.
@@ -12,14 +11,14 @@ import java.util.LinkedList;
  */
 public class Book implements Serializable{
 
-    private static final long serialVersionUID = 20170116;
+    private static final long serialVersionUID = 20170116L;
 
-    public static final int NO_CONTENTS = -1;
+    private static final int NO_CONTENTS = -1;
     private static final int DEFAULT_MAX_WORDS_PER_LINE = 5;
     private static final int DEFAULT_MAX_LINES_PER_PAGE = 5;
 
     private String contents;
-    private LinkedList<Word> words;
+    private MyLinkedList<Word> words;
     private int maxWordsPerLine;
     private int maxLinesPerPage;
 
@@ -52,7 +51,7 @@ public class Book implements Serializable{
     }
 
     private Book() {
-        words = new LinkedList<>();
+        words = new MyLinkedList<>();
         maxWordsPerLine = DEFAULT_MAX_WORDS_PER_LINE;
         maxLinesPerPage = DEFAULT_MAX_LINES_PER_PAGE;
     }
@@ -84,11 +83,11 @@ public class Book implements Serializable{
         this.contents = contents;
     }
 
-    public LinkedList<Word> getWords() {
+    public MyLinkedList<Word> getWords() {
         return words;
     }
 
-    public void setWords(LinkedList<Word> words) {
+    public void setWords(MyLinkedList<Word> words) {
         this.words = words;
     }
 

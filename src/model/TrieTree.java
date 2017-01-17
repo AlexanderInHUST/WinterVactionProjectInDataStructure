@@ -4,7 +4,6 @@ import baseDataStructure.MyLinkedList;
 import com.sun.istack.internal.Nullable;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 
 /**
  * Created by tangyifeng on 17/1/16.
@@ -12,13 +11,13 @@ import java.util.LinkedList;
  */
 public class TrieTree implements Serializable {
 
-    private static final long serialVersionUID = 20170116;
+    private static final long serialVersionUID = 20170116L;
 
     private TrieTree[] children;
-    private LinkedList<Word> wordList;
+    private MyLinkedList<Word> wordList;
 
     private TrieTree() {
-        wordList = new LinkedList<>();
+        wordList = new MyLinkedList<>();
     }
 
     public static TrieTree initialTireTree() {
@@ -38,18 +37,18 @@ public class TrieTree implements Serializable {
         return deleteWord(word, word.getSelf());
     }
 
-    public LinkedList<Word> searchWord(Word word) {
+    public MyLinkedList<Word> searchWord(Word word) {
         return searchWord(word, word.getSelf());
     }
 
-    public LinkedList<Word> traverseTrieTree() {
-        LinkedList<Word> allWords = new LinkedList<>();
+    public MyLinkedList<Word> traverseTrieTree() {
+        MyLinkedList<Word> allWords = new MyLinkedList<>();
         traverseTrieTree(allWords);
         return allWords;
     }
 
     @Nullable
-    private void traverseTrieTree(LinkedList<Word> allWords) {
+    private void traverseTrieTree(MyLinkedList<Word> allWords) {
         if(wordList.size() != 0)
             allWords.add(wordList.get(0));
         if(children != null) {
@@ -61,7 +60,7 @@ public class TrieTree implements Serializable {
     }
 
     @Nullable
-    private LinkedList<Word> searchWord(Word word, String subWord) {
+    private MyLinkedList<Word> searchWord(Word word, String subWord) {
         if(wordList == null)
             return null;
         if(subWord.length() == 0) {
@@ -78,7 +77,7 @@ public class TrieTree implements Serializable {
         if(subWord.length() == 0) {
             if(wordList == null || !wordList.contains(word))
                 return false;
-            wordList = new LinkedList<>();
+            wordList = new MyLinkedList<>();
             return true;
         } else {
             return children[subWord.charAt(0) - 'a'].deleteWord(word, subWord.substring(1));
@@ -105,11 +104,11 @@ public class TrieTree implements Serializable {
         this.children = children;
     }
 
-    public LinkedList<Word> getWordList() {
+    public MyLinkedList<Word> getWordList() {
         return wordList;
     }
 
-    public void setWordList(LinkedList<Word> wordList) {
+    public void setWordList(MyLinkedList<Word> wordList) {
         this.wordList = wordList;
     }
 }

@@ -3,20 +3,20 @@ package presenter;
 import baseDataStructure.MyLinkedList;
 import com.sun.istack.internal.Nullable;
 import model.Book;
-import model.TrieTree;
+import model.HashTable;
 import model.Word;
 
 import java.io.*;
 
 /**
- * Created by tangyifeng on 17/1/16.
+ * Created by tangyifeng on 17/1/17.
  * Email: yifengtang_hust@outlook.com
  */
-public class TreeManager{
+public class HashManager {
 
-    private TrieTree root;
+    private HashTable table;
+    private static HashManager manager;
     private Book book;
-    private static TreeManager manager;
 
     public interface OnTraverseListener {
         public void onTraverse(MyLinkedList<Word> words);
@@ -26,101 +26,93 @@ public class TreeManager{
         public void onSearch(MyLinkedList<Word> words);
     }
 
-    private TreeManager() {
-    }
+    private HashManager() {}
 
-    public static TreeManager getTreePresenter() {
-        manager = new TreeManager();
+    public static HashManager getHashManager() {
+        manager = new HashManager();
         return manager;
     }
 
-    public void initDSTable(String fileAddress) {
+    public void initHash(String fileAddress) {
         File bookFile = new File(fileAddress);
         if (bookFile.exists()) {
             book = Book.getBook(bookFile);
         } else {
             book = Book.getBook(fileAddress);
         }
-        root = TrieTree.initialTireTree();
-        for (Word word : book.getWords()) {
-            root.addWord(word);
+        table = HashTable.initialHashTable();
+        for(Word word : book.getWords()) {
+            table.addWord(word);
         }
-        System.out.println("Trie tree has been initial successfully!");
+        System.out.println("Hash has been initial successfully!");
     }
 
-    public boolean destroyTable() {
-        if (root == null) {
+    public boolean destroyHash() {
+        if(table == null) {
             return false;
         }
-        root.destroyTireTree();
-        book = null;
+        table = null;
         return true;
     }
 
-    public boolean searchDSTable(String word, OnSearchListener searchListener) {
-        if (root == null)
+    public boolean searchHash(String word, OnSearchListener listener) {
+        if(table == null) {
             return false;
+        }
         Word searchWord = new Word();
         searchWord.setSelf(word);
-        MyLinkedList<Word> words = root.searchWord(searchWord);
-        searchListener.onSearch(words);
+        MyLinkedList<Word> words = table.searchWord(searchWord);
+        listener.onSearch(words);
         return true;
     }
 
-    public boolean insertDSTable(String word, int pos) {
-        if (root == null)
+    public boolean insertHash(String word, int pos) {
+        if (table == null)
             return false;
         Word insertWord = new Word();
         insertWord.setPos(pos);
         insertWord.setPosByLines(pos / book.getMaxWordsPerLine());
         insertWord.setPosByPages(insertWord.getPosByLines() / book.getMaxLinesPerPage());
         insertWord.setSelf(word);
-        root.addWord(insertWord);
+        table.addWord(insertWord);
         return true;
     }
 
-    public boolean insertDSTable(String word, int posInLine, int posByLines, int posByPage) {
-        if (root == null)
+    public boolean insertHash(String word, int posInLine, int posByLines, int posByPage) {
+        if (table == null)
             return false;
         Word insertWord = new Word();
         insertWord.setSelf(word);
         insertWord.setPos((posByLines - 1) * book.getMaxWordsPerLine() + posInLine);
         insertWord.setPosByLines(posByLines);
         insertWord.setPosByPages(posByPage);
-        root.addWord(insertWord);
+        table.addWord(insertWord);
         return true;
     }
 
-    public boolean deleteDSTable(String word) {
-        if (root == null)
+    public boolean deleteHash(String word) {
+        if (table == null)
             return false;
         Word deleteWord = new Word();
         deleteWord.setSelf(word);
-        root.deleteWord(deleteWord);
+        table.deleteWord(deleteWord);
         return true;
     }
 
-    public boolean traverseDSTable(OnTraverseListener traverseListener) {
-        if (root == null)
+    public boolean traverseHash(OnTraverseListener listener) {
+        if(table == null) {
             return false;
-        MyLinkedList<Word> words = root.traverseTrieTree();
-        traverseListener.onTraverse(words);
+        }
+        MyLinkedList<Word> words = table.traverseHashTable();
+        listener.onTraverse(words);
         return true;
     }
 
-    public boolean getAllWordsDSTable(OnTraverseListener traverseListener) {
-        if (root == null)
-            return false;
-        MyLinkedList<Word> words = book.getWords();
-        traverseListener.onTraverse(words);
-        return true;
-    }
-
-    public boolean saveDSTable(@Nullable String saveAddress) {
+    public boolean saveHash(@Nullable String saveAddress) {
         try {
             String address = (saveAddress == null) ? "data.saved" : saveAddress;
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(address));
-            outputStream.writeObject(root);
+            outputStream.writeObject(table);
             outputStream.writeObject(book);
             outputStream.flush();
             outputStream.close();
@@ -131,20 +123,20 @@ public class TreeManager{
         return true;
     }
 
-    public boolean loadDSTable(@Nullable String saveAddress) {
+    public boolean loadHash(@Nullable String saveAddress) {
         try{
             String address = (saveAddress == null) ? "data.saved" : saveAddress;
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(address));
-            root = TrieTree.initialTireTree();
+            table = HashTable.initialHashTable();
             book = Book.getBook();
-            root = (TrieTree) inputStream.readObject();
+            table = (HashTable) inputStream.readObject();
             book = (Book) inputStream.readObject();
             inputStream.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-        System.out.println("Trie tree has been load successfully!");
+        System.out.println("Hash has been load successfully!");
         return true;
     }
 }

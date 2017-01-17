@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
  */
 public class MyLinkedList<T> implements Iterable<T>, Serializable{
 
+    private static final long serialVersionUID = 20170116L;
+
     private transient MyLinkedNode head;
     private transient MyLinkedNode tail;
     private transient int size;

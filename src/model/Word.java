@@ -8,18 +8,27 @@ import java.io.Serializable;
  */
 public class Word implements Serializable{
 
-    private static final long serialVersionUID = 20170116;
+    private static final long serialVersionUID = 20170116L;
 
     private String self;
     private int posByLines;
     private int posByPages;
     private int pos;
 
+    public Word() {}
+
+    public Word(String self, int pos) {
+        this.self = self;
+        this.pos = pos;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object object) {
         boolean equals = true;
         Word obj = (Word) object;
+        if(this.getClass() != object.getClass())
+            equals = false;
         if(!getSelf().equals(obj.getSelf())) {
             equals = false;
         }
