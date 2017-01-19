@@ -6,6 +6,7 @@ import model.Book;
 import model.HashTable;
 import model.Word;
 
+import javax.swing.*;
 import java.io.*;
 
 /**
@@ -18,6 +19,18 @@ public class HashManager {
     private static HashManager manager;
     private Book book;
 
+    private boolean isInit = false;
+
+    public interface OnSaveCompleteListener {
+        public void onSuccess();
+        public void onFailure();
+    }
+
+    public interface OnLoadCompleteListener {
+        public void onSuccess();
+        public void onFailure();
+    }
+
     public interface OnTraverseListener {
         public void onTraverse(MyLinkedList<Word> words);
     }
@@ -28,12 +41,17 @@ public class HashManager {
 
     private HashManager() {}
 
+    public boolean isInitial() {
+        return isInit;
+    }
+
     public static HashManager getHashManager() {
-        manager = new HashManager();
+        if(manager == null)
+            manager = new HashManager();
         return manager;
     }
 
-    public void initHash(String fileAddress) {
+    public void initHash(String fileAddress, OnLoadCompleteListener onLoadCompleteListener) {
         File bookFile = new File(fileAddress);
         if (bookFile.exists()) {
             book = Book.getBook(bookFile);
@@ -44,6 +62,8 @@ public class HashManager {
         for(Word word : book.getWords()) {
             table.addWord(word);
         }
+        isInit = true;
+        SwingUtilities.invokeLater(onLoadCompleteListener::onSuccess);
         System.out.println("Hash has been initial successfully!");
     }
 
@@ -52,6 +72,7 @@ public class HashManager {
             return false;
         }
         table = null;
+        isInit = false;
         return true;
     }
 
@@ -116,31 +137,37 @@ public class HashManager {
         return true;
     }
 
-    public boolean saveHash(@Nullable String saveAddress) {
+    public boolean saveHash(@Nullable String saveAddress, OnSaveCompleteListener saveCompleteListener) {
         try {
-            String address = (saveAddress == null) ? "data.saved" : saveAddress;
+            String address = (saveAddress == null) ? "data.saved.hash" : saveAddress + ".saved.hash";
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(address));
             outputStream.writeObject(table);
             outputStream.writeObject(book);
             outputStream.flush();
             outputStream.close();
+            SwingUtilities.invokeLater(saveCompleteListener::onSuccess);
         } catch (IOException e) {
+            SwingUtilities.invokeLater(saveCompleteListener::onFailure);
             e.printStackTrace();
             return false;
         }
+        System.out.println("Hash has been save successfully!");
         return true;
     }
 
-    public boolean loadHash(@Nullable String saveAddress) {
+    public boolean loadHash(@Nullable String saveAddress, OnLoadCompleteListener loadCompleteListener) {
         try{
-            String address = (saveAddress == null) ? "data.saved" : saveAddress;
+            String address = (saveAddress == null) ? "data.saved.hash" : saveAddress;
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(address));
             table = HashTable.initialHashTable();
             book = Book.getBook();
             table = (HashTable) inputStream.readObject();
             book = (Book) inputStream.readObject();
             inputStream.close();
+            isInit = true;
+            SwingUtilities.invokeLater(loadCompleteListener::onSuccess);
         } catch (IOException | ClassNotFoundException e) {
+            SwingUtilities.invokeLater(loadCompleteListener::onFailure);
             e.printStackTrace();
             return false;
         }

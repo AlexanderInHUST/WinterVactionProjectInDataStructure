@@ -6,6 +6,7 @@ import model.Book;
 import model.TrieTree;
 import model.Word;
 
+import javax.swing.*;
 import java.io.*;
 
 /**
@@ -18,6 +19,18 @@ public class TreeManager{
     private Book book;
     private static TreeManager manager;
 
+    private boolean isInit = false;
+
+    public interface OnSaveCompleteListener {
+        public void onSuccess();
+        public void onFailure();
+    }
+
+    public interface OnLoadCompleteListener {
+        public void onSuccess();
+        public void onFailure();
+    }
+
     public interface OnTraverseListener {
         public void onTraverse(MyLinkedList<Word> words);
     }
@@ -29,12 +42,17 @@ public class TreeManager{
     private TreeManager() {
     }
 
+    public boolean isInitial() {
+        return isInit;
+    }
+
     public static TreeManager getTreePresenter() {
-        manager = new TreeManager();
+        if(manager == null)
+            manager = new TreeManager();
         return manager;
     }
 
-    public void initDSTable(String fileAddress) {
+    public void initDSTable(String fileAddress, OnLoadCompleteListener onLoadCompleteListener) {
         File bookFile = new File(fileAddress);
         if (bookFile.exists()) {
             book = Book.getBook(bookFile);
@@ -45,6 +63,8 @@ public class TreeManager{
         for (Word word : book.getWords()) {
             root.addWord(word);
         }
+        isInit = true;
+        SwingUtilities.invokeLater(onLoadCompleteListener::onSuccess);
         System.out.println("Trie tree has been initial successfully!");
     }
 
@@ -54,6 +74,7 @@ public class TreeManager{
         }
         root.destroyTireTree();
         book = null;
+        isInit = false;
         return true;
     }
 
@@ -116,31 +137,37 @@ public class TreeManager{
         return true;
     }
 
-    public boolean saveDSTable(@Nullable String saveAddress) {
+    public boolean saveDSTable(@Nullable String saveAddress, OnSaveCompleteListener onSaveCompleteListener) {
         try {
-            String address = (saveAddress == null) ? "data.saved" : saveAddress;
+            String address = (saveAddress == null) ? "data.saved.tree" : saveAddress + ".saved.tree";
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(address));
             outputStream.writeObject(root);
             outputStream.writeObject(book);
             outputStream.flush();
             outputStream.close();
+            SwingUtilities.invokeLater(onSaveCompleteListener::onSuccess);
         } catch (IOException e) {
+            SwingUtilities.invokeLater(onSaveCompleteListener::onFailure);
             e.printStackTrace();
             return false;
         }
+        System.out.println("Trie tree has been save successfully!");
         return true;
     }
 
-    public boolean loadDSTable(@Nullable String saveAddress) {
+    public boolean loadDSTable(@Nullable String saveAddress, OnLoadCompleteListener onLoadCompleteListener) {
         try{
-            String address = (saveAddress == null) ? "data.saved" : saveAddress;
+            String address = (saveAddress == null) ? "data.saved.tree" : saveAddress;
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(address));
             root = TrieTree.initialTireTree();
             book = Book.getBook();
             root = (TrieTree) inputStream.readObject();
             book = (Book) inputStream.readObject();
             inputStream.close();
+            isInit = true;
+            SwingUtilities.invokeLater(onLoadCompleteListener::onSuccess);
         } catch (IOException | ClassNotFoundException e) {
+            SwingUtilities.invokeLater(onLoadCompleteListener::onFailure);
             e.printStackTrace();
             return false;
         }
