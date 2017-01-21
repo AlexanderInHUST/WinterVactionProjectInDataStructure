@@ -2,11 +2,14 @@ package presenter;
 
 import presenter.HashManager;
 import presenter.TreeManager;
+import view.MainView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.lang.reflect.Method;
 
 /**
  * Created by tangyifeng on 17/1/19.
@@ -16,10 +19,16 @@ public class ListenerGetter {
 
     private HashManager hashManager;
     private TreeManager treeManager;
+    private MainView mainView;
+    private CardLayout layout;
 
-    public ListenerGetter(HashManager hashManager, TreeManager treeManager) {
+    private volatile int loadCount = 0;
+
+    public ListenerGetter(HashManager hashManager, TreeManager treeManager, MainView mainView) {
         this.hashManager = hashManager;
         this.treeManager = treeManager;
+        this.mainView = mainView;
+        this.layout = (CardLayout) mainView.getBaseFrame().getLayout();
     }
 
     public ActionListener getFileOpenListener() {
@@ -35,6 +44,17 @@ public class ListenerGetter {
                 }).start();
             } else {
                 JOptionPane.showMessageDialog(null, "请选择txt文件！",
+                        "错误", JOptionPane.WARNING_MESSAGE);
+            }
+        };
+    }
+
+    public ActionListener getFileSearchListener() {
+        return (ActionEvent e) -> {
+            if(hashManager.isInitial() && treeManager.isInitial()) {
+                layout.show(mainView.getBaseFrame(), "SearchCard");
+            } else {
+                JOptionPane.showMessageDialog(null, "请先加载程序！",
                         "错误", JOptionPane.WARNING_MESSAGE);
             }
         };
@@ -103,12 +123,17 @@ public class ListenerGetter {
         public void onSuccess() {
             JOptionPane.showMessageDialog(null, "哈希表加载成功！",
                     "提示", JOptionPane.INFORMATION_MESSAGE);
+            if(++loadCount == 2) {
+                layout.show(mainView.getBaseFrame(), "ListCard");
+                loadCount = 0;
+            }
         }
 
         @Override
         public void onFailure() {
             JOptionPane.showMessageDialog(null, "哈希表加载失败！",
                     "错误", JOptionPane.WARNING_MESSAGE);
+            loadCount = 0;
         }
     };
 
@@ -131,12 +156,17 @@ public class ListenerGetter {
         public void onSuccess() {
             JOptionPane.showMessageDialog(null, "字典树加载成功！",
                     "提示", JOptionPane.INFORMATION_MESSAGE);
+            if(++loadCount == 2) {
+                layout.show(mainView.getBaseFrame(), "ListCard");
+                loadCount = 0;
+            }
         }
 
         @Override
         public void onFailure() {
             JOptionPane.showMessageDialog(null, "字典树加载失败！",
                     "错误", JOptionPane.WARNING_MESSAGE);
+            loadCount = 0;
         }
     };
 

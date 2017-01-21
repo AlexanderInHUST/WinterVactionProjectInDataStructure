@@ -17,6 +17,7 @@ public class MainMenu {
     private JMenu file;
     private JMenu about;
     private JMenuItem fileOpen;
+    private JMenuItem fileSearch;
     private JMenuItem fileSave;
     private JMenuItem fileLoad;
     private JMenuItem fileExit;
@@ -26,8 +27,9 @@ public class MainMenu {
     private HashManager hashManager;
     private TreeManager treeManager;
 
-    public JMenuBar getMainMenuBar(HashManager hashManager, TreeManager treeManager) {
-        listenerGetter = new ListenerGetter(hashManager, treeManager);
+    public JMenuBar getMainMenuBar(HashManager hashManager, TreeManager treeManager, MainView mainView) {
+        System.out.println("MainMenu " + mainView);
+        listenerGetter = new ListenerGetter(hashManager, treeManager, mainView);
         initialMainMenuBar();
         setHashManager(hashManager);
         setTreeManager(treeManager);
@@ -46,6 +48,10 @@ public class MainMenu {
         fileOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
         fileOpen.addActionListener(listenerGetter.getFileOpenListener());
 
+        fileSearch = new JMenuItem("搜索");
+        fileSearch.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+        fileSearch.addActionListener(listenerGetter.getFileSearchListener());
+
         fileSave = new JMenuItem("保存");
         fileSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         fileSave.addActionListener(listenerGetter.getFileSaveListener());
@@ -62,6 +68,7 @@ public class MainMenu {
         aboutAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 
         file.add(fileOpen);
+        file.add(fileSearch);
         file.add(fileSave);
         file.add(fileLoad);
         file.add(fileExit);
@@ -83,5 +90,4 @@ public class MainMenu {
     public void setTreeManager(TreeManager treeManager) {
         this.treeManager = treeManager;
     }
-
 }
