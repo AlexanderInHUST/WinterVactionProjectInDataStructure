@@ -1,5 +1,7 @@
 package presenter;
 
+import baseDataStructure.MyLinkedList;
+import model.Word;
 import presenter.HashManager;
 import presenter.TreeManager;
 import view.MainView;
@@ -22,6 +24,9 @@ public class ListenerGetter {
     private MainView mainView;
     private CardLayout layout;
 
+    private String maxWord;
+    private int maxCount;
+
     private volatile int loadCount = 0;
 
     public ListenerGetter(HashManager hashManager, TreeManager treeManager, MainView mainView) {
@@ -41,6 +46,7 @@ public class ListenerGetter {
                 new Thread(() -> {
                     hashManager.initHash(file.getAbsolutePath(), hashLoadListener);
                     treeManager.initDSTable(file.getAbsolutePath(), treeLoadListener);
+                    loadListInfo();
                 }).start();
             } else {
                 JOptionPane.showMessageDialog(null, "请选择txt文件！",
@@ -159,6 +165,7 @@ public class ListenerGetter {
             if(++loadCount == 2) {
                 layout.show(mainView.getBaseFrame(), "ListCard");
                 loadCount = 0;
+                loadListInfo();
             }
         }
 
@@ -184,4 +191,53 @@ public class ListenerGetter {
         }
     };
 
+    private void loadListInfo() {
+        hashManager.getAllWordsHash((MyLinkedList<Word> words) -> {
+            mainView.getHashTotalNum().setText("共" + words.size() + "词");
+        });
+        hashManager.traverseHash((MyLinkedList<Word> words) -> {
+            mainView.getHashKindsNum().setText("共" + words.size() + "词");
+        });
+        hashManager.traverseHash((MyLinkedList<Word> words) -> {
+            maxWord = "";
+            maxCount = 0;
+            for(Word word : words) {
+                hashManager.searchHash(word.getSelf(), (MyLinkedList<Word> searchList) -> {
+                    if(searchList.size() > maxCount) {
+                        maxWord = word.getSelf();
+                        maxCount = searchList.size();
+                    }
+                });
+            }
+            mainView.getHashMostWords().setText(maxWord + "共" + maxCount + "次");
+        });
+        hashManager.getAllWordsHash((MyLinkedList<Word> searchList) -> {
+            mainView.getHashFirstWord().setText(searchList.get(0).getSelf());
+            mainView.getHashLastWord().setText(searchList.get(searchList.size() - 1).getSelf());
+        });
+
+        treeManager.getAllWordsDSTable((MyLinkedList<Word> words) -> {
+            mainView.getTreeTotalNum().setText("共" + words.size() + "词");
+        });
+        treeManager.traverseDSTable((MyLinkedList<Word> words) -> {
+            mainView.getTreeKindsNum().setText("共" + words.size() + "词");
+        });
+        treeManager.traverseDSTable((MyLinkedList<Word> words) -> {
+            maxWord = "";
+            maxCount = 0;
+            for(Word word : words) {
+                treeManager.searchDSTable(word.getSelf(), (MyLinkedList<Word> searchList) -> {
+                    if(searchList.size() > maxCount) {
+                        maxWord = word.getSelf();
+                        maxCount = searchList.size();
+                    }
+                });
+            }
+            mainView.getTreeMostWords().setText(maxWord + "共" + maxCount + "次");
+        });
+        treeManager.getAllWordsDSTable((MyLinkedList<Word> searchList) -> {
+            mainView.getTreeFirstWord().setText(searchList.get(0).getSelf());
+            mainView.getTreeLastWord().setText(searchList.get(searchList.size() - 1).getSelf());
+        });
+    }
 }
