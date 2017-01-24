@@ -64,8 +64,8 @@ public class Book implements Serializable{
             if(!s.isEmpty()) {
                 Word word = new Word();
                 word.setSelf(s.toLowerCase());
-                word.setPosByLines(j / maxWordsPerLine);
-                word.setPosByPages(word.getPosByLines() / maxLinesPerPage);
+                word.setPosByLines(j / maxWordsPerLine + 1);
+                word.setPosByPages(word.getPosByLines() / maxLinesPerPage + 1);
                 word.setPos(j);
                 words.add(word);
                 j++;

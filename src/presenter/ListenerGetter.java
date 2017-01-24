@@ -34,6 +34,7 @@ public class ListenerGetter {
         this.treeManager = treeManager;
         this.mainView = mainView;
         this.layout = (CardLayout) mainView.getBaseFrame().getLayout();
+        initialButtons();
     }
 
     public ActionListener getFileOpenListener() {
@@ -42,15 +43,17 @@ public class ListenerGetter {
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             chooser.showOpenDialog(new JPanel());
             File file = chooser.getSelectedFile();
-            if(file.getName().contains("txt")) {
-                new Thread(() -> {
-                    hashManager.initHash(file.getAbsolutePath(), hashLoadListener);
-                    treeManager.initDSTable(file.getAbsolutePath(), treeLoadListener);
-                    loadListInfo();
-                }).start();
-            } else {
-                JOptionPane.showMessageDialog(null, "请选择txt文件！",
-                        "错误", JOptionPane.WARNING_MESSAGE);
+            if (file != null) {
+                if (file.getName().contains("txt")) {
+                    new Thread(() -> {
+                        hashManager.initHash(file.getAbsolutePath(), hashLoadListener);
+                        treeManager.initDSTable(file.getAbsolutePath(), treeLoadListener);
+                        loadListInfo();
+                    }).start();
+                } else {
+                    JOptionPane.showMessageDialog(null, "请选择txt文件！",
+                            "错误", JOptionPane.WARNING_MESSAGE);
+                }
             }
         };
     }
@@ -192,6 +195,7 @@ public class ListenerGetter {
     };
 
     private void loadListInfo() {
+        // Hash part
         hashManager.getAllWordsHash((MyLinkedList<Word> words) -> {
             mainView.getHashTotalNum().setText("共" + words.size() + "词");
         });
@@ -216,6 +220,7 @@ public class ListenerGetter {
             mainView.getHashLastWord().setText(searchList.get(searchList.size() - 1).getSelf());
         });
 
+        //Tree part
         treeManager.getAllWordsDSTable((MyLinkedList<Word> words) -> {
             mainView.getTreeTotalNum().setText("共" + words.size() + "词");
         });
@@ -238,6 +243,128 @@ public class ListenerGetter {
         treeManager.getAllWordsDSTable((MyLinkedList<Word> searchList) -> {
             mainView.getTreeFirstWord().setText(searchList.get(0).getSelf());
             mainView.getTreeLastWord().setText(searchList.get(searchList.size() - 1).getSelf());
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getHashSearchListener() {
+        return (ActionEvent e) -> {
+            String input = mainView.getHashSearchEditBox().getText();
+            if(input.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "请先输入要搜索的单词！",
+                        "错误", JOptionPane.WARNING_MESSAGE);
+            } else {
+                hashManager.searchHash(input, (MyLinkedList<Word> words) -> {
+                    if(words == null || words.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "没有这个单词！",
+                                "错误", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        DefaultListModel<String> listModel = new DefaultListModel<>();
+                        for (Word word : words) {
+                            listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                        }
+                        mainView.getHashTableList().setModel(listModel);
+                        mainView.getHashSearchEditBox().setText(input + "共计出现了" + words.size() + "次");
+                    }
+                });
+            }
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getHashKindListListener() {
+        return (ActionEvent e) -> {
+            hashManager.traverseHash((MyLinkedList<Word> words) -> {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for(Word word : words) {
+                    listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                }
+                mainView.getHashTableList().setModel(listModel);
+            });
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getHashWordListListener() {
+        return (ActionEvent e) -> {
+            hashManager.getAllWordsHash((MyLinkedList<Word> words) -> {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for(Word word : words) {
+                    listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                }
+                mainView.getHashTableList().setModel(listModel);
+            });
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getTreeSearchListener() {
+        return (ActionEvent e) -> {
+            String input = mainView.getTreeEditBox().getText();
+            if(input.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "请先输入要搜索的单词！",
+                        "错误", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    treeManager.searchDSTable(input, (MyLinkedList<Word> words) -> {
+                        if (words == null || words.size() == 0) {
+                            JOptionPane.showMessageDialog(null, "没有这个单词！",
+                                    "错误", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            DefaultListModel<String> listModel = new DefaultListModel<>();
+                            for (Word word : words) {
+                                listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                            }
+                            mainView.getTreeList().setModel(listModel);
+                            mainView.getTreeEditBox().setText(input + "共计出现了" + words.size() + "次");
+                        }
+                    });
+                } catch (NullPointerException ex) {
+                    JOptionPane.showMessageDialog(null, "没有这个单词！",
+                            "错误", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getTreeKindListListener() {
+        return (ActionEvent e) -> {
+            treeManager.traverseDSTable((MyLinkedList<Word> words) -> {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for(Word word : words) {
+                    listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                }
+                mainView.getTreeList().setModel(listModel);
+            });
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    private ActionListener getTreeWordListListener() {
+        return (ActionEvent e) -> {
+            treeManager.getAllWordsDSTable((MyLinkedList<Word> words) -> {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for(Word word : words) {
+                    listModel.addElement(word.getSelf() + "出现在" + word.getPosByPages() + "页第" + word.getPosByLines() + "行");
+                }
+                mainView.getTreeList().setModel(listModel);
+            });
+        };
+    }
+
+    private void initialButtons() {
+        //Hash part
+        mainView.getHashSearchButton().addActionListener(getHashSearchListener());
+        mainView.getHashKindListButton().addActionListener(getHashKindListListener());
+        mainView.getHashWordListButton().addActionListener(getHashWordListListener());
+        //Tree part
+        mainView.getTreeSearchButton().addActionListener(getTreeSearchListener());
+        mainView.getTreeKindListButton().addActionListener(getTreeKindListListener());
+        mainView.getTreeWordListButton().addActionListener(getTreeWordListListener());
+
+        mainView.getBackButton().addActionListener((ActionEvent e) -> {
+            layout.show(mainView.getBaseFrame(), "ListCard");
         });
     }
 }

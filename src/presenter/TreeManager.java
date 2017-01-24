@@ -78,7 +78,7 @@ public class TreeManager{
         return true;
     }
 
-    public boolean searchDSTable(String word, OnSearchListener searchListener) {
+    public boolean searchDSTable(String word, OnSearchListener searchListener) throws NullPointerException{
         if (root == null)
             return false;
         Word searchWord = new Word();

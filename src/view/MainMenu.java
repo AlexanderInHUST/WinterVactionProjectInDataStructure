@@ -22,6 +22,7 @@ public class MainMenu {
     private JMenuItem fileLoad;
     private JMenuItem fileExit;
     private JMenuItem aboutAbout;
+    private MainView mainView;
 
     private ListenerGetter listenerGetter;
     private HashManager hashManager;
@@ -29,8 +30,10 @@ public class MainMenu {
 
     public JMenuBar getMainMenuBar(HashManager hashManager, TreeManager treeManager, MainView mainView) {
         System.out.println("MainMenu " + mainView);
+        this.mainView = mainView;
         listenerGetter = new ListenerGetter(hashManager, treeManager, mainView);
         initialMainMenuBar();
+        initialLists();
         setHashManager(hashManager);
         setTreeManager(treeManager);
         return mainMenuBar;
@@ -73,6 +76,11 @@ public class MainMenu {
         file.add(fileLoad);
         file.add(fileExit);
         about.add(aboutAbout);
+    }
+
+    private void initialLists() {
+        mainView.getHashTableList().setVisibleRowCount(10);
+        mainView.getTreeList().setVisibleRowCount(10);
     }
 
     public HashManager getHashManager() {

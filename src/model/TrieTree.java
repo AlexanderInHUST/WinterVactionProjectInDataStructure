@@ -60,7 +60,7 @@ public class TrieTree implements Serializable {
     }
 
     @Nullable
-    private MyLinkedList<Word> searchWord(Word word, String subWord) {
+    private MyLinkedList<Word> searchWord(Word word, String subWord) throws NullPointerException{
         if(wordList == null)
             return null;
         if(subWord.length() == 0) {
