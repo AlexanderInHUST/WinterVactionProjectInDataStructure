@@ -42,6 +42,18 @@ public class MainView {
     private JTextArea treeFirstWord;
     private JTextArea treeLastWordTitle;
     private JTextArea treeLastWord;
+    private JTextArea hashSearchTitle;
+    private JList hashTableList;
+    private JEditorPane hashSearchEditBox;
+    private JButton hashSearchButton;
+    private JButton hashKindListButton;
+    private JButton hashWordListButton;
+    private JTextArea treeSearchTitle;
+    private JList treeList;
+    private JEditorPane treeEditBox;
+    private JButton treeSearchButton;
+    private JButton treeKindListButton;
+    private JButton treeWordListButton;
     private JMenuBar baseMenu;
     private MainMenu menu;
 
