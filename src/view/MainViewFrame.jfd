@@ -10,6 +10,7 @@ new FormModel {
 			name: "baseFrame"
 			"title": "数据结构课设"
 			"resizable": false
+			"defaultCloseOperation": 3
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane1"
 				"background": new java.awt.Color( 235, 235, 235, 255 )
@@ -39,6 +40,11 @@ new FormModel {
 							name: "treeWordsNumText"
 							"text": "总词数："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"cursor": &Cursor0 new java.awt.Cursor( 0 )
+							"dragEnabled": false
+							"focusable": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 1
@@ -47,6 +53,11 @@ new FormModel {
 							name: "treeVacaNumText"
 							"text": "总词量："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"requestFocusEnabled": false
+							"focusCycleRoot": false
+							"focusable": false
+							"dragEnabled": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 3
@@ -55,6 +66,11 @@ new FormModel {
 							name: "treeMostText"
 							"text": "出现最多词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"cursor": #Cursor0
+							"dragEnabled": false
+							"focusable": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridY": 5
 						} )
@@ -62,6 +78,11 @@ new FormModel {
 							name: "treeFirstText"
 							"text": "第一个词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"cursor": #Cursor0
+							"dragEnabled": false
+							"focusable": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 7
@@ -70,6 +91,11 @@ new FormModel {
 							name: "treeLastText"
 							"text": "最后一个词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"cursor": #Cursor0
+							"dragEnabled": false
+							"focusable": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 9
@@ -163,6 +189,11 @@ new FormModel {
 							name: "hashWordsNumText"
 							"text": "总词数："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"requestFocusEnabled": false
+							"focusable": false
+							"dragEnabled": false
+							"focusCycleRoot": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 1
@@ -171,6 +202,11 @@ new FormModel {
 							name: "hashVacaNumText"
 							"text": "总词量："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"focusable": false
+							"dragEnabled": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 3
@@ -179,6 +215,11 @@ new FormModel {
 							name: "hashMostText"
 							"text": "出现最多词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"focusable": false
+							"requestFocusEnabled": false
+							"focusCycleRoot": false
+							"dragEnabled": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridY": 5
 						} )
@@ -186,6 +227,11 @@ new FormModel {
 							name: "hashFirstText"
 							"text": "第一个词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"focusable": false
+							"dragEnabled": false
+							"focusCycleRoot": false
+							"requestFocusEnabled": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 7
@@ -194,6 +240,11 @@ new FormModel {
 							name: "hashLastText"
 							"text": "最后一个词："
 							"background": new java.awt.Color( 235, 235, 235, 255 )
+							"focusable": false
+							"requestFocusEnabled": false
+							"focusCycleRoot": false
+							"dragEnabled": false
+							"cursor": #Cursor0
 						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 							"gridX": 1
 							"gridY": 9
@@ -279,6 +330,11 @@ new FormModel {
 						"text": "Made by AlexTang"
 						"foreground": new java.awt.Color( 204, 204, 204, 255 )
 						"background": new java.awt.Color( 235, 235, 235, 255 )
+						"requestFocusEnabled": false
+						"focusCycleRoot": false
+						"focusable": false
+						"dragEnabled": false
+						"cursor": #Cursor0
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 2
 						"gridY": 1

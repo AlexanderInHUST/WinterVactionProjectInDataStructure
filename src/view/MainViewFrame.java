@@ -67,6 +67,7 @@ public class MainViewFrame extends JFrame {
         {
             baseFrame.setTitle("\u6570\u636e\u7ed3\u6784\u8bfe\u8bbe");
             baseFrame.setResizable(false);
+            baseFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             Container baseFrameContentPane = baseFrame.getContentPane();
             baseFrameContentPane.setLayout(new FormLayout(
                 "[247dlu,default]",
@@ -81,6 +82,12 @@ public class MainViewFrame extends JFrame {
                     panel3.setBackground(new Color(235, 235, 235));
 
                     // JFormDesigner evaluation mark
+                    panel3.setBorder(new javax.swing.border.CompoundBorder(
+                        new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                            "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                            java.awt.Color.red), panel3.getBorder())); panel3.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
                     panel3.setLayout(new FormLayout(
                         "[146dlu,default], $lcgap, 3dlu, $lcgap, [100dlu,default]",
                         "82dlu, $lgap, 46dlu, $lgap, 19dlu"));
@@ -105,26 +112,51 @@ public class MainViewFrame extends JFrame {
                         //---- treeWordsNumText ----
                         treeWordsNumText.setText("\u603b\u8bcd\u6570\uff1a");
                         treeWordsNumText.setBackground(new Color(235, 235, 235));
+                        treeWordsNumText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        treeWordsNumText.setDragEnabled(false);
+                        treeWordsNumText.setFocusable(false);
+                        treeWordsNumText.setFocusCycleRoot(false);
+                        treeWordsNumText.setRequestFocusEnabled(false);
                         panel2.add(treeWordsNumText, CC.xy(1, 1));
 
                         //---- treeVacaNumText ----
                         treeVacaNumText.setText("\u603b\u8bcd\u91cf\uff1a");
                         treeVacaNumText.setBackground(new Color(235, 235, 235));
+                        treeVacaNumText.setRequestFocusEnabled(false);
+                        treeVacaNumText.setFocusCycleRoot(false);
+                        treeVacaNumText.setFocusable(false);
+                        treeVacaNumText.setDragEnabled(false);
+                        treeVacaNumText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel2.add(treeVacaNumText, CC.xy(1, 3));
 
                         //---- treeMostText ----
                         treeMostText.setText("\u51fa\u73b0\u6700\u591a\u8bcd\uff1a");
                         treeMostText.setBackground(new Color(235, 235, 235));
+                        treeMostText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        treeMostText.setDragEnabled(false);
+                        treeMostText.setFocusable(false);
+                        treeMostText.setFocusCycleRoot(false);
+                        treeMostText.setRequestFocusEnabled(false);
                         panel2.add(treeMostText, CC.xy(1, 5));
 
                         //---- treeFirstText ----
                         treeFirstText.setText("\u7b2c\u4e00\u4e2a\u8bcd\uff1a");
                         treeFirstText.setBackground(new Color(235, 235, 235));
+                        treeFirstText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        treeFirstText.setDragEnabled(false);
+                        treeFirstText.setFocusable(false);
+                        treeFirstText.setFocusCycleRoot(false);
+                        treeFirstText.setRequestFocusEnabled(false);
                         panel2.add(treeFirstText, CC.xy(1, 7));
 
                         //---- treeLastText ----
                         treeLastText.setText("\u6700\u540e\u4e00\u4e2a\u8bcd\uff1a");
                         treeLastText.setBackground(new Color(235, 235, 235));
+                        treeLastText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        treeLastText.setDragEnabled(false);
+                        treeLastText.setFocusable(false);
+                        treeLastText.setFocusCycleRoot(false);
+                        treeLastText.setRequestFocusEnabled(false);
                         panel2.add(treeLastText, CC.xy(1, 9));
                     }
                     panel3.add(panel2, CC.xy(5, 1));
@@ -200,26 +232,51 @@ public class MainViewFrame extends JFrame {
                         //---- hashWordsNumText ----
                         hashWordsNumText.setText("\u603b\u8bcd\u6570\uff1a");
                         hashWordsNumText.setBackground(new Color(235, 235, 235));
+                        hashWordsNumText.setRequestFocusEnabled(false);
+                        hashWordsNumText.setFocusable(false);
+                        hashWordsNumText.setDragEnabled(false);
+                        hashWordsNumText.setFocusCycleRoot(false);
+                        hashWordsNumText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel5.add(hashWordsNumText, CC.xy(1, 1));
 
                         //---- hashVacaNumText ----
                         hashVacaNumText.setText("\u603b\u8bcd\u91cf\uff1a");
                         hashVacaNumText.setBackground(new Color(235, 235, 235));
+                        hashVacaNumText.setFocusable(false);
+                        hashVacaNumText.setDragEnabled(false);
+                        hashVacaNumText.setFocusCycleRoot(false);
+                        hashVacaNumText.setRequestFocusEnabled(false);
+                        hashVacaNumText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel5.add(hashVacaNumText, CC.xy(1, 3));
 
                         //---- hashMostText ----
                         hashMostText.setText("\u51fa\u73b0\u6700\u591a\u8bcd\uff1a");
                         hashMostText.setBackground(new Color(235, 235, 235));
+                        hashMostText.setFocusable(false);
+                        hashMostText.setRequestFocusEnabled(false);
+                        hashMostText.setFocusCycleRoot(false);
+                        hashMostText.setDragEnabled(false);
+                        hashMostText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel5.add(hashMostText, CC.xy(1, 5));
 
                         //---- hashFirstText ----
                         hashFirstText.setText("\u7b2c\u4e00\u4e2a\u8bcd\uff1a");
                         hashFirstText.setBackground(new Color(235, 235, 235));
+                        hashFirstText.setFocusable(false);
+                        hashFirstText.setDragEnabled(false);
+                        hashFirstText.setFocusCycleRoot(false);
+                        hashFirstText.setRequestFocusEnabled(false);
+                        hashFirstText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel5.add(hashFirstText, CC.xy(1, 7));
 
                         //---- hashLastText ----
                         hashLastText.setText("\u6700\u540e\u4e00\u4e2a\u8bcd\uff1a");
                         hashLastText.setBackground(new Color(235, 235, 235));
+                        hashLastText.setFocusable(false);
+                        hashLastText.setRequestFocusEnabled(false);
+                        hashLastText.setFocusCycleRoot(false);
+                        hashLastText.setDragEnabled(false);
+                        hashLastText.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                         panel5.add(hashLastText, CC.xy(1, 9));
                     }
                     panel4.add(panel5, CC.xy(5, 1));
@@ -288,6 +345,11 @@ public class MainViewFrame extends JFrame {
                     textPane5.setText("Made by AlexTang");
                     textPane5.setForeground(new Color(204, 204, 204));
                     textPane5.setBackground(new Color(235, 235, 235));
+                    textPane5.setRequestFocusEnabled(false);
+                    textPane5.setFocusCycleRoot(false);
+                    textPane5.setFocusable(false);
+                    textPane5.setDragEnabled(false);
+                    textPane5.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     panel16.add(textPane5, CC.xy(2, 1));
                 }
                 panel13.add(panel16, CC.xy(1, 1));

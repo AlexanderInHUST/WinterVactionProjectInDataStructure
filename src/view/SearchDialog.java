@@ -30,7 +30,7 @@ public class SearchDialog extends JDialog {
         dialogPane = new JPanel();
         contentPanel = new JPanel();
         textPane1 = new JTextPane();
-        searchEdit = new JEditorPane();
+        searchEdit = new JTextField();
         buttonBar = new JPanel();
         okButton = new JButton();
         cancelButton = new JButton();
@@ -38,25 +38,39 @@ public class SearchDialog extends JDialog {
         //======== this ========
         setTitle("\u641c\u7d22\u5355\u8bcd");
         setResizable(false);
-        setAlwaysOnTop(true);
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
-            dialogPane.setBorder(Borders.createEmptyBorder("9dlu, 9dlu, 9dlu, 9dlu"));
+            dialogPane.setBorder(Borders.DIALOG);
+            dialogPane.setBackground(new Color(235, 235, 235));
 
             // JFormDesigner evaluation mark
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(
+                new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                    "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                    javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                    java.awt.Color.red), dialogPane.getBorder())); dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
+                contentPanel.setBackground(new Color(235, 235, 235));
+                contentPanel.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
                 contentPanel.setLayout(new FormLayout(
                     "184dlu",
                     "default, 6dlu, default"));
 
                 //---- textPane1 ----
                 textPane1.setText("\u8bf7\u8f93\u5165\u60f3\u8981\u641c\u7d22\u7684\u5355\u8bcd");
+                textPane1.setBackground(new Color(235, 235, 235));
+                textPane1.setFocusable(false);
+                textPane1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                textPane1.setDragEnabled(false);
+                textPane1.setFocusCycleRoot(false);
+                textPane1.setRequestFocusEnabled(false);
                 contentPanel.add(textPane1, CC.xy(1, 1));
                 contentPanel.add(searchEdit, CC.xy(1, 3));
             }
@@ -65,16 +79,19 @@ public class SearchDialog extends JDialog {
             //======== buttonBar ========
             {
                 buttonBar.setBorder(Borders.createEmptyBorder("4dlu, 0dlu, 0dlu, 0dlu"));
+                buttonBar.setBackground(new Color(235, 235, 235));
                 buttonBar.setLayout(new FormLayout(
                     "$glue, $button, $rgap, $button",
                     "pref"));
 
                 //---- okButton ----
                 okButton.setText("\u641c\u7d22");
+                okButton.setBackground(new Color(235, 235, 235));
                 buttonBar.add(okButton, CC.xy(2, 1));
 
                 //---- cancelButton ----
                 cancelButton.setText("\u53d6\u6d88");
+                cancelButton.setBackground(new Color(235, 235, 235));
                 buttonBar.add(cancelButton, CC.xy(4, 1));
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
@@ -90,7 +107,7 @@ public class SearchDialog extends JDialog {
     private JPanel dialogPane;
     private JPanel contentPanel;
     private JTextPane textPane1;
-    private JEditorPane searchEdit;
+    private JTextField searchEdit;
     private JPanel buttonBar;
     private JButton okButton;
     private JButton cancelButton;
@@ -109,7 +126,7 @@ public class SearchDialog extends JDialog {
         return textPane1;
     }
 
-    public JEditorPane getSearchEdit() {
+    public JTextField getSearchEdit() {
         return searchEdit;
     }
 
