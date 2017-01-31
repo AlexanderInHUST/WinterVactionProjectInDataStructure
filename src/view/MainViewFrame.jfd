@@ -1,0 +1,327 @@
+JFDML JFormDesigner: "5.2.5.1.342" Java: "1.8.0_112-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+			"$columnSpecs": "max(default;247dlu)"
+			"$rowSpecs": "default, default"
+		} ) {
+			name: "baseFrame"
+			"title": "数据结构课设"
+			"resizable": false
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				"background": new java.awt.Color( 235, 235, 235, 255 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "max(default;146dlu), labelcompgap, 3dlu, labelcompgap, max(default;100dlu)"
+					"$rowSpecs": "82dlu, linegap, 46dlu, linegap, 19dlu"
+				} ) {
+					name: "panel3"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "treeList"
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridHeight": 3
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "89dlu"
+						"$rowSpecs": "default, linegap, default, linegap, default, linegap, default, linegap, default"
+					} ) {
+						name: "panel2"
+						"border": &CompoundBorder0 new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "基本信息" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "treeWordsNumText"
+							"text": "总词数："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 1
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "treeVacaNumText"
+							"text": "总词量："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 3
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "treeMostText"
+							"text": "出现最多词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridY": 5
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "treeFirstText"
+							"text": "第一个词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 7
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "treeLastText"
+							"text": "最后一个词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 9
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 5
+						"gridY": 1
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "115dlu"
+						"$rowSpecs": "default, default, default"
+					} ) {
+						name: "panel6"
+						"border": &CompoundBorder1 new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "检索" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "treeShowWordsButton"
+							"text": "显示全书所有单词"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 1
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "treeShowVacaButton"
+							"text": "显示全书所有词汇"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 2
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "treeSearchButton"
+							"text": "搜索"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 3
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 5
+						"gridY": 3
+						"gridHeight": 3
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "120dlu, labelcompgap, 30dlu"
+						"$rowSpecs": "default"
+					} ) {
+						name: "panel14"
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "treeLookUpEdit"
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "treeLookUpButton"
+							"text": "查找"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 3
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 1
+						"gridY": 5
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "字典树"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "max(default;143dlu), labelcompgap, 3dlu, labelcompgap, max(default;100dlu)"
+					"$rowSpecs": "82dlu, linegap, 46dlu, linegap, 19dlu"
+				} ) {
+					name: "panel4"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "hashList"
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridHeight": 3
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "89dlu"
+						"$rowSpecs": "default, linegap, default, linegap, default, linegap, default, linegap, default"
+					} ) {
+						name: "panel5"
+						"border": #CompoundBorder0
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "hashWordsNumText"
+							"text": "总词数："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 1
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "hashVacaNumText"
+							"text": "总词量："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 3
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "hashMostText"
+							"text": "出现最多词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridY": 5
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "hashFirstText"
+							"text": "第一个词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 7
+						} )
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "hashLastText"
+							"text": "最后一个词："
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 9
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 5
+						"gridY": 1
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "115dlu"
+						"$rowSpecs": "default, default, default"
+					} ) {
+						name: "panel7"
+						"border": #CompoundBorder1
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "hashShowWordsButton"
+							"text": "显示全书所有单词"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 1
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "hashShowVacaButton"
+							"text": "显示全书所有词汇"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 2
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "hashSearchButton"
+							"text": "搜索"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 1
+							"gridY": 3
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 5
+						"gridY": 3
+						"gridHeight": 3
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+						"$columnSpecs": "120dlu, labelcompgap, 30dlu"
+						"$rowSpecs": "default"
+					} ) {
+						name: "panel15"
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "hashLookUpEdit"
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "hashLookUpButton"
+							"text": "查找"
+							"background": new java.awt.Color( 235, 235, 235, 255 )
+						}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+							"gridX": 3
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 1
+						"gridY": 5
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "哈希表"
+				} )
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+				"$columnSpecs": "128dlu, labelcompgap, default, labelcompgap, default, labelcompgap, default, labelcompgap, default"
+				"$rowSpecs": "default"
+			} ) {
+				name: "panel13"
+				"background": new java.awt.Color( 235, 235, 235, 255 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "5dlu, default"
+					"$rowSpecs": "default"
+				} ) {
+					name: "panel16"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+					add( new FormComponent( "javax.swing.JTextPane" ) {
+						name: "textPane5"
+						"text": "Made by AlexTang"
+						"foreground": new java.awt.Color( 204, 204, 204, 255 )
+						"background": new java.awt.Color( 235, 235, 235, 255 )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 2
+						"gridY": 1
+					} )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 1
+					"gridY": 1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "openButton"
+					"text": "打开"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 3
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveButton"
+					"text": "保存"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 5
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "loadButton"
+					"text": "加载"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 7
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "exitButton"
+					"text": "关闭"
+					"background": new java.awt.Color( 235, 235, 235, 255 )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 9
+				} )
+			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+				"gridX": 1
+				"gridY": 2
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 490, 350 )
+		} )
+	}
+}
