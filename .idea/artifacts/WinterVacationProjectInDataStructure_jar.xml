@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="WinterVacationProjectInDataStructure:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WinterVacationProjectInDataStructure_jar</output-path>
+    <root id="root">
+      <element id="archive" name="WinterVacationProjectInDataStructure.jar">
+        <element id="module-output" name="WinterVacationProjectInDataStructure" />
+      </element>
+      <element id="library" level="project" name="JGoodies Forms" />
+    </root>
+  </artifact>
+</component>
